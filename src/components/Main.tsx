@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Stack, Text } from "@chakra-ui/react";
+import { Box, Heading, Stack, Text } from "@chakra-ui/react";
 import { Game } from "./Game";
 import { texts } from "../constants/texts";
 

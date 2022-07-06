@@ -10,6 +10,7 @@ import {
 import { Controls } from "./Controls";
 import { texts } from "../constants/texts";
 import GameModal from "./GameModal";
+import Character from "./Character";
 
 type Props = {
   data: TMazeData;
@@ -27,7 +28,6 @@ const Maze = ({ data, onMove, onReset, movesCount }: Props) => {
     "end-point": exit,
     "game-state": status,
   } = data;
-  console.log(status);
   const ponyPos = pony[0];
   const domokunPos = domokun[0];
   const exitPos = exit[0];
@@ -39,6 +39,8 @@ const Maze = ({ data, onMove, onReset, movesCount }: Props) => {
     templateColumns: `repeat(${size}, 1fr)`,
     mb: 6,
   };
+
+  const cellHeight = size < 20 ? ["6", "8"] : ["4", "6"];
 
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown, true);
@@ -70,8 +72,10 @@ const Maze = ({ data, onMove, onReset, movesCount }: Props) => {
         {cells.map((cell, idx) => {
           const props = getGridCellProps(cell, idx, size);
           return (
-            <GridItem key={idx} {...props} w="100%" h={["6", "8", "8"]}>
-              {getCellFilling(idx, ponyPos, domokunPos, exitPos)}
+            <GridItem key={idx} {...props} w="100%" h={cellHeight}>
+              <Character
+                charID={getCellFilling(idx, ponyPos, domokunPos, exitPos)}
+              />
             </GridItem>
           );
         })}

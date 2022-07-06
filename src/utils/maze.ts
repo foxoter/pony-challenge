@@ -1,3 +1,4 @@
+import { TCharID } from "../typings/maze";
 import { TGameState, TMazeCell, TMazeMoveDirections } from "../typings/ponyApi";
 
 export const getGridCellProps = (cell: TMazeCell, id: number, size: number) => {
@@ -62,4 +63,17 @@ export const parseMoveDirection = (
 
 export const getIsGameOver = (status: TGameState) => {
   return status === "won" || status === "over";
+};
+
+export const getCharImageLink = (charID: TCharID) => {
+  switch (charID) {
+    case "P":
+      return "/images/pony.png";
+    case "D":
+      return "/images/domokun.png";
+    case "E":
+      return "/images/exit.png";
+    default:
+      return "/images/pony.png";
+  }
 };
